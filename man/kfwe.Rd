@@ -15,8 +15,8 @@ This library collects some procedures controlling the Generalized Familywise Err
 \usage{
 kfweLR(p, k = 1, alpha = 0.01, disp = TRUE)
 kfweGR(p, k = 1, alpha = 0.01, disp = TRUE, SD=TRUE, const = 10, alpha.prime = getAlpha(k = k, s = length(p), alpha = alpha, const = const))
-kfweOrd(p, k = 1, alpha = 0.01, ord = NULL, J = qnbinom(alpha, k, alpha), disp = TRUE)
-
+kfweOrd(p, k = 1, alpha = 0.01, ord = NULL, alpha.prime = alpha, J = qnbinom(alpha,k,alpha.prime), disp = TRUE, GD=FALSE)
+                                                  
 getAlpha (s, k = 1, alpha = 0.01, const = 10)
 
 }
@@ -52,12 +52,14 @@ getAlpha (s, k = 1, alpha = 0.01, const = 10)
   \item{alpha.prime}{ univariate alpha for single step Guo and Romano procedure
 %%     ~~Describe \code{alpha} here~~
 }
+  \item{GD}{ Logic value. Should the correction for general dependence be applied? (See reference below for further details)
+}
 }
 %%\details{
 %%  ~~ If necessary, more details than the description above ~~
 %%}
 \value{
-kfweOrd, kfweLR, kfweGR, kfweGR.SD return a vector of kFWE-adjusted p-values. it respect the order of input vector of p-values p.
+kfweOrd, kfweLR, kfweGR, kfweGR.SD return a vector of kFWE-adjusted p-values. It respect the order of input vector of p-values p.
 
 getAlpha returns the alpha for Guo and Romano procedure.
 
@@ -75,8 +77,8 @@ Guo and Romano (2007) A Generalized Sidak-Holm procedure and control of genraliz
 
 For Ordinal procedure see:
 
-Finos and Farcomeni (2009) k-FWER control without multiplicity correction, with application to detection
-of genetic determinants of multiple sclerosis in Italian twins. University of Padua, Dept Statistical Science. Working Paper #7
+Finos and Farcomeni (2010) k-FWER control without multiplicity correction, with application to detection
+of genetic determinants of multiple sclerosis in Italian twins. Biometrics  (Articles online in advance of print: DOI 10.1111/j.1541-0420.2010.01443.x)
 %% ~put references to the literature/web site here ~
 }
 \author{ L. Finos and A. Farcomeni
@@ -93,13 +95,15 @@ of genetic determinants of multiple sclerosis in Italian twins. University of Pa
 }
 \examples{
 set.seed(13)
-y=matrix(rnorm(3000),3,1000)+2  #create toy data
-p=apply(y,2,function(y) t.test(y)$p.value)  #compute p-values
-M2=apply(y^2,2,mean)   #compute ordering criterion
+y=matrix(rnorm(3000),3,1000)+2                      #create toy data
+p=apply(y,2,function(y) t.test(y)$p.value)          #compute p-values
+M2=apply(y^2,2,mean)                                #compute ordering criterion
 
-kord=kfweOrd(p,k=5,ord=M2)  #ordinal procedure
-klr=kfweLR(p,k=5)           #Lehaman and Romano
-kgr=kfweGR(p,k=5)           #Guo and Romano
+kord=kfweOrd(p,k=5,ord=M2)                          #ordinal procedure
+kgr=kfweGR(p,k=5)                                   #Guo and Romano
+
+kord=kfweOrd(p,k=5,ord=M2,GD=TRUE)                  #ordinal procedure (any dependence)
+klr=kfweLR(p,k=5)                                   #Lehaman and Romano (any dependence)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
