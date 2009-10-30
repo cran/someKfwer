@@ -14,8 +14,12 @@ This library collects some procedures controlling the Generalized Familywise Err
 }
 \usage{
 kfweLR(p, k = 1, alpha = 0.01, disp = TRUE)
-kfweGR(p, k = 1, alpha = 0.01, disp = TRUE, SD=TRUE, const = 10, alpha.prime = getAlpha(k = k, s = length(p), alpha = alpha, const = const))
-kfweOrd(p, k = 1, alpha = 0.01, ord = NULL, alpha.prime = alpha, J = qnbinom(alpha,k,alpha.prime), disp = TRUE, GD=FALSE)
+kfweGR(p, k = 1, alpha = 0.01, disp = TRUE,
+SD=TRUE, const = 10, alpha.prime = getAlpha(k = k, s = length(p), 
+                    alpha = alpha, const = const))
+kfweOrd(p, k = 1, alpha = 0.01, ord = NULL, 
+    alpha.prime = alpha, J = qnbinom(alpha,k,alpha.prime), 
+    disp = TRUE, GD=FALSE)
                                                   
 getAlpha (s, k = 1, alpha = 0.01, const = 10)
 
@@ -84,15 +88,7 @@ of genetic determinants of multiple sclerosis in Italian twins. Biometrics  (Art
 \author{ L. Finos and A. Farcomeni
 %%  ~~who you are~~
 }
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 set.seed(13)
 y=matrix(rnorm(3000),3,1000)+2                      #create toy data

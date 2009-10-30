@@ -1,12 +1,12 @@
 \name{someKFWER-package}
-\Rdversion{1.1}
+\Rdversion{1.2}
 \alias{someKfwer-package}
 \docType{package}
 \title{
 Controlling the k-FWER (Generalized Familywise Error Rate)
 }
 \description{
-This library collects some procedures controlling the Generalized Familywise Error Rate: Lehmann and Romano (2005), Guo and Romano (2007) (single step and stepdown), Finos and Farcomeni (2009).}
+This package collects some procedures controlling the Generalized Familywise Error Rate: Lehmann and Romano (2005), Guo and Romano (2007) (single step and stepdown), Finos and Farcomeni (2009).}
 \details{
 \tabular{ll}{
 Package: \tab kfwe\cr
